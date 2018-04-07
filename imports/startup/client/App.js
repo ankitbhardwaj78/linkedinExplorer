@@ -12,11 +12,19 @@ class App extends Component{
       if(err)
       console.log(err);
       else
-      console.log(res);
+      console.log(res.content);
     })
   }
 
-
+companyUpdates(){
+  let token = Tokens.findOne();
+  Meteor.call("get_updates",token.token,(err,res)=>{
+    if(err)
+    console.log(err);
+    else
+    console.log(res.content);
+  })
+}
   linkedinLogin() {
     Meteor.call("get_request_token", (err, res) => {
       if(err)
@@ -38,6 +46,7 @@ class App extends Component{
       return(
         <div>
         <button onClick = {this.companyProfile.bind(this)}>Company Profile</button>
+        <button onClick = {this.companyUpdates.bind(this)}>Company Updates</button>
         </div>
       )
     }

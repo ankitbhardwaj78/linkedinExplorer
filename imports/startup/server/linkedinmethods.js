@@ -33,14 +33,23 @@ Meteor.methods({
     })
     return res;
   },
-   "get_profile_page"(token){
+  "get_profile_page"(token){
     let base_url = "https://api.linkedin.com/v1/companies/13701308/company-statistics?"
-    let apiurl = `${base_url}oauth2_access_token=${token}`
+    let apiurl = `${base_url}oauth2_access_token=${token}&format=json`
     console.log(apiurl);
     let res = HTTP.call("get",apiurl);
     console.log(res);
-    let res1 = parser.toJson(res.content);
-    return res1;
+    // let res1 = parser.toJson(res.content);
+    return res;
+  },
+  "get_updates"(token){
+    let base_url = "https://api.linkedin.com/v1/companies/13701308/updates?"
+    let apiurl = `${base_url}oauth2_access_token=${token}&format=json`
+    console.log(apiurl);
+    let res = HTTP.call("get",apiurl);
+    console.log(res);
+    // let res1 = parser.toJson(res.content);
+    return res;
   }
 
 });
